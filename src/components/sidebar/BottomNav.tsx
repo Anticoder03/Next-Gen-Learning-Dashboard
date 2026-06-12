@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import {
   LayoutDashboard,
   BookOpen,
@@ -11,15 +12,15 @@ import {
 } from "lucide-react";
 
 const navItems = [
-  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { id: "courses", label: "Courses", icon: BookOpen },
-  { id: "analytics", label: "Analytics", icon: BarChart3 },
-  { id: "settings", label: "Settings", icon: Settings },
-  { id: "profile", label: "Profile", icon: User },
+  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard, href: "/" },
+  { id: "courses", label: "Courses", icon: BookOpen, href: "/courses" },
+  { id: "analytics", label: "Analytics", icon: BarChart3, href: "/analytics" },
+  { id: "settings", label: "Settings", icon: Settings, href: "/settings" },
+  { id: "profile", label: "Profile", icon: User, href: "/profile" },
 ];
 
 export function BottomNav() {
-  const [activeId, setActiveId] = useState("dashboard");
+  const pathname = usePathname();
 
   return (
     <nav
@@ -29,13 +30,13 @@ export function BottomNav() {
       <ul className="flex items-center justify-around h-16 px-2" role="list">
         {navItems.map((item) => {
           const Icon = item.icon;
-          const isActive = activeId === item.id;
+          const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
 
           return (
             <li key={item.id}>
-              <button
+              <Link
                 id={`mobile-nav-${item.id}`}
-                onClick={() => setActiveId(item.id)}
+                href={item.href}
                 className="relative flex flex-col items-center gap-1 px-3 py-1.5"
                 aria-current={isActive ? "page" : undefined}
               >
@@ -62,7 +63,7 @@ export function BottomNav() {
                 >
                   {item.label}
                 </span>
-              </button>
+              </Link>
             </li>
           );
         })}

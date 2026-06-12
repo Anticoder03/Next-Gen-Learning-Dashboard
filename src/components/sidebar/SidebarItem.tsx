@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
+import Link from "next/link";
 
 interface SidebarItemProps {
   id: string;
@@ -10,22 +11,21 @@ interface SidebarItemProps {
   href: string;
   isActive: boolean;
   collapsed: boolean;
-  onClick: () => void;
 }
 
 export function SidebarItem({
   id,
   label,
   Icon,
+  href,
   isActive,
   collapsed,
-  onClick,
 }: SidebarItemProps) {
   return (
     <li>
-      <button
+      <Link
         id={`nav-${id}`}
-        onClick={onClick}
+        href={href}
         className={`
           relative flex items-center gap-3 w-full px-3 py-2.5 rounded-xl
           text-sm font-medium transition-colors duration-200
@@ -53,7 +53,7 @@ export function SidebarItem({
             {label}
           </span>
         )}
-      </button>
+      </Link>
     </li>
   );
 }

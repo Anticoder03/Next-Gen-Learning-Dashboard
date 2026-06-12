@@ -1,0 +1,17 @@
+import { User } from "lucide-react";
+
+export default function ProfilePage() {
+  return (
+    <div className="p-4 md:p-6 lg:p-8">
+      <section className="rounded-2xl p-8 bg-card border border-border-subtle min-h-[50vh] flex flex-col items-center justify-center text-center">
+        <div className="w-16 h-16 rounded-2xl bg-accent-emerald/10 flex items-center justify-center mb-6">
+          <User className="w-8 h-8 text-accent-emerald" />
+        </div>
+        <h1 className="text-2xl font-bold text-text-primary mb-2">User Profile</h1>
+        <p className="text-text-secondary max-w-md">
+          This is a placeholder page for the student&apos;s public profile, achievements, and certificates.
+        </p>
+      </section>
+    </div>
+  );
+}

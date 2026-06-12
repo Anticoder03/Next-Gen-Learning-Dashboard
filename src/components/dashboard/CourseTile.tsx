@@ -62,6 +62,7 @@ export function CourseTile({ course, index }: CourseTileProps) {
     >
       {/* Icon */}
       <div className={`w-10 h-10 rounded-xl ${accent.bg} flex items-center justify-center mb-4`}>
+        {/* eslint-disable-next-line react-hooks/static-components */}
         <Icon className={`w-5 h-5 ${accent.text}`} />
       </div>
 

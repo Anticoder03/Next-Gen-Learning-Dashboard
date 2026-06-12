@@ -6,6 +6,8 @@ import { ActivityTile } from "@/components/dashboard/ActivityTile";
 import { StatsTile } from "@/components/dashboard/StatsTile";
 import { CourseCardSkeleton } from "@/components/skeletons/CourseCardSkeleton";
 
+export const dynamic = "force-dynamic";
+
 /**
  * Dashboard Page — Server Component
  *

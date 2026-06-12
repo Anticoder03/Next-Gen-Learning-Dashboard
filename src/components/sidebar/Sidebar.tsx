@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   BookOpen,
@@ -24,7 +25,7 @@ const navItems = [
 
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
-  const [activeId, setActiveId] = useState("dashboard");
+  const pathname = usePathname();
 
   return (
     <nav
@@ -62,18 +63,20 @@ export function Sidebar() {
 
       {/* Navigation Items */}
       <ul className="flex-1 flex flex-col gap-1 px-3 py-4" role="list">
-        {navItems.map((item) => (
-          <SidebarItem
-            key={item.id}
-            id={item.id}
-            label={item.label}
-            Icon={item.icon}
-            href={item.href}
-            isActive={activeId === item.id}
-            collapsed={collapsed}
-            onClick={() => setActiveId(item.id)}
-          />
-        ))}
+        {navItems.map((item) => {
+          const isActive = pathname === item.href || (item.href !== "/" && pathname?.startsWith(item.href));
+          return (
+            <SidebarItem
+              key={item.id}
+              id={item.id}
+              label={item.label}
+              Icon={item.icon}
+              href={item.href}
+              isActive={isActive}
+              collapsed={collapsed}
+            />
+          );
+        })}
       </ul>
 
       {/* User Section */}

@@ -40,7 +40,7 @@ export function HeroTile() {
       <div className="relative z-10">
         <div className="flex items-center gap-2 text-text-secondary mb-2">
           <Calendar className="w-4 h-4" />
-          <time className="text-sm" dateTime={today.toISOString()}>
+          <time className="text-sm" dateTime={today.toISOString()} suppressHydrationWarning>
             {formattedDate}
           </time>
         </div>
